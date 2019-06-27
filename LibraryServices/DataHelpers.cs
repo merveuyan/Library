@@ -23,5 +23,15 @@ namespace LibraryServices
 
             return hours;
         }
+
+        public static string HumanizeDay(int number)
+        {
+            return Enum.GetName(typeof(DayOfWeek), number);
+        }
+
+        public static string HumanizeTime(int time)
+        {
+            return TimeSpan.FromHours(time).ToString("hh':'mm");
+        }
     }
 }

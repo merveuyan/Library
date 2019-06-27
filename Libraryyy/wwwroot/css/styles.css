@@ -68,7 +68,7 @@
 }
 
 #catalog {
-    background: url('/image/bldg.png') bottom right 15% no-repeat #555;
+    background: url('/image/catalog.png') bottom right 15% no-repeat #555;
 }
 
 #catalogIndexTable {
@@ -84,7 +84,7 @@
     }
 
 #patrons {
-    background: url('../image/patron.png') bottom left 15% no-repeat #555;
+    background: url('/image/patron.png') bottom left 15% no-repeat #555;
 }
 
 .branchInfo {
