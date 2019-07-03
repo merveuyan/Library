@@ -51,6 +51,21 @@ namespace LibraryServices
             return DataHelpers.HumanizeBizHours(hours);
         }
 
+        public IEnumerable<string> GetNameOfPatrons(int branchId)
+        {
+            var names = _context.Patrons
+                .Include(p=>p.HomeLibraryBranch)
+                .Where(h => h.HomeLibraryBranch.Id == branchId);
+            return DataHelpers.HumanizeNames(names);
+        }
+
+        public IEnumerable<string> GetNameOfAssets(int branchId)
+        {
+            var assets = _context.LibraryAssets
+                .Where(h => h.Location.Id == branchId);
+            return DataHelpers.HumanizeAssets(assets);
+        }
+
         public IEnumerable<Patron> GetPatrons(int branchId)
         {
             return _context.LibraryBranches

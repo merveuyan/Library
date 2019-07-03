@@ -19,5 +19,7 @@ namespace Library.Models.Branch
         public decimal TotalAssetValue { get; set; }
         public string ImageUrl { get; set; }
         public IEnumerable<string> HoursOpen { get; set; }
+        public IEnumerable<string> NameOfPatrons { get; set; }
+        public IEnumerable<string> NameOfAssets { get; set; }
     }
 }

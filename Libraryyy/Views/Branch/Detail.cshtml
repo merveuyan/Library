@@ -17,12 +17,12 @@
                 <h2>@Model.Name</h2>
                 <div class="branchContact">
                     <div id="branchAddress">Address: @Model.Address</div>
-                    <div id="branchTel">Address: @Model.Telephone</div>
+                    <div id="branchTel">Telephone: @Model.Telephone</div>
                 </div>
                 <div id="branchDescription">
                     <p class="caption">@Model.Description</p>
-                </div>              
-                <div id="branchHours">
+                </div>
+                <div id="Dewey">
                     <ul>
                         @foreach (var day in Model.HoursOpen)
                         {
@@ -49,8 +49,30 @@
                         <td class="itemLabel">Value Of Assets: </td>
                         <td class="itemValue">$@Model.TotalAssetValue</td>
                     </tr>
+                    <td></td>
                 </table>
             </div>
+            <div>
+                <tr>
+                    <td class="itemLabel">Name Of Patrons: </td>
+                    <ul>
+                        @foreach (var name in Model.NameOfPatrons)
+                        {
+                            <li>@name</li>
+                        }
+                    </ul>
+                </tr>
+            </div>
+            <div>
+                <td class="itemLabel">Name Of Assets: </td>
+                <ul>
+                    @foreach (var asset in Model.NameOfAssets)
+                    {
+                        <li>@asset</li>
+                    }
+                </ul>
+            </div>
+
         </div>
     </div>
 </div>

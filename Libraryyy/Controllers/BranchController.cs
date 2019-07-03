@@ -51,7 +51,9 @@ namespace Library.Controllers
                 NumberOfPatrons = _branch.GetPatrons(id).Count(),
                 TotalAssetValue = _branch.GetAssets(id).Sum(a => a.Cost),
                 ImageUrl = branch.ImageUrl,
-                HoursOpen = _branch.GetBranchHours(id)
+                HoursOpen = _branch.GetBranchHours(id),
+                NameOfPatrons = _branch.GetNameOfPatrons(id),
+                NameOfAssets = _branch.GetNameOfAssets(id)
             };
 
             return View(model);

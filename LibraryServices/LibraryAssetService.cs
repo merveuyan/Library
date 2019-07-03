@@ -22,6 +22,7 @@ namespace LibraryServices
 
         public IEnumerable<LibraryAsset> GetAll()
         {
+
             return _context.LibraryAssets
                 .Include(asset => asset.Status)
                 .Include(asset => asset.Location);
@@ -71,18 +72,37 @@ namespace LibraryServices
             return book.Any() ? "Book" : "Video";
         }
 
-        public string GetAuthorOrDirector(int id)
+        public string GetAuthorOrDirector(int assetId)
         {
-            var isBook = _context.LibraryAssets.OfType<Book>()
-                .Where(asset => asset.Id == id).Any();
+            var asset = _context.LibraryAssets.FirstOrDefault(a => a.Id == assetId);
+            if(asset==null)
+            {
+                throw new Exception("Böyle bir asset yok!");        
+            }
 
-            var isVideo = _context.LibraryAssets.OfType<Video>()
-                .Where(asset => asset.Id == id).Any();
+            var book = asset as Book;
 
-            return isBook ?
-                _context.Books.FirstOrDefault(book => book.Id == id).Author :
-                _context.Videos.FirstOrDefault(video => video.Id == id).Director
-                ?? "Unknown";
+            if (book!=null)
+            {
+                return book.Author;
+            }
+            var video = asset as Video;
+
+            if (video != null)
+            {
+                return video.Director;
+            }
+            throw new Exception("Tanımlanamadı.");
+            //var isBook = _context.LibraryAssets.OfType<Book>()
+            //    .Where(asset => asset.Id == assetId).Any();
+
+            //var isVideo = _context.LibraryAssets.OfType<Video>()
+            //    .Where(asset => asset.Id == assetId).Any();
+
+            //return isBook ?
+            //    _context.Books.FirstOrDefault(book => book.Id == assetId).Author :
+            //    _context.Videos.FirstOrDefault(video => video.Id == assetId).Director
+            //    ?? "Unknown";
         }
     }
 }
